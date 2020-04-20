@@ -58,3 +58,39 @@ if err != nil {
 }
 fmt.Println(resp)
 ```
+
+Adding a `map` iterator function named `xiter` to a log
+```go
+resp, err = client.AddIterator("testlog", "xiter", "map", "return msg")
+if err != nil {
+    panic(err)
+}
+fmt.Println(resp)
+```
+
+Listing all iterators for a log
+```go
+iterators, err := client.ListIterators("testlog")
+if err != nil {
+    panic(err)
+}
+fmt.Println(iterators)
+```
+
+Getting a message from an iterator
+```go
+message, err := client.NextIterator("xiter", 0, 1)
+if err != nil {
+    panic(err)
+}
+fmt.Println(string(message))
+```
+
+Deleting an iterator
+```go
+resp, err = client.DeleteIterator("testlog", "xiter")
+if err != nil {
+    panic(err)
+}
+fmt.Println(resp)
+```

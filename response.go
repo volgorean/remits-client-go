@@ -69,6 +69,11 @@ func (r *Response) DataBytes() ([]byte, error) {
 		return nil, errors.New("Not a Data Frame")
 	}
 
+	// empty response
+	if len(r.Payload) <= 4 {
+		return nil, nil
+	}
+
 	// Length of first message
 	msgLen := binary.BigEndian.Uint32(r.Payload[:4])
 	return r.Payload[4 : 4+msgLen], nil
