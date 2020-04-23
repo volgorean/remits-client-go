@@ -1,7 +1,6 @@
 package remits
 
 import (
-	"fmt"
 	"github.com/fxamacker/cbor/v2"
 )
 
